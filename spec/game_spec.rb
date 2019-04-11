@@ -97,4 +97,11 @@ describe Game do
       game.make_move(Prompt::KEY_DOWN, 'O', board)
     end
   end
+
+  describe '#end_game' do
+    it 'exits the game when called' do
+      expect(game).to receive(:exit).with(0).once
+      game.end_game
+    end
+  end
 end

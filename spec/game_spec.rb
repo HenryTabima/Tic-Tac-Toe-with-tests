@@ -76,16 +76,25 @@ describe Game do
   end
 
   describe '#make_move' do
-    it 'run move_cursor_up' do
-      board = instance_double('Board')
+    let(:board) { instance_double('Board') }
+    it 'move_cursor_up' do
       expect(board).to receive(:move_cursor_up).once
       game.make_move(Prompt::KEY_UP, 'X', board)
     end
-  end
 
-  # describe '#end_game' do
-  #   it 'exits the game when called' do
-  #     expect(game.end_game).to eql(false)
-  #   end
-  # end
+    it 'move cursor_left' do
+      expect(board).to receive(:move_cursor_left).once
+      game.make_move(Prompt::KEY_LEFT, 'O', board)
+    end
+
+    it 'move cursor_right' do
+      expect(board).to receive(:move_cursor_right).once
+      game.make_move(Prompt::KEY_RIGHT, 'X', board)
+    end
+
+    it 'moves_down' do 
+      expect(board).to receive(:move_cursor_down).once
+      game.make_move(Prompt::KEY_DOWN, 'O', board)
+    end
+  end
 end

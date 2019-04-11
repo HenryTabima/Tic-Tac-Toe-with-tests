@@ -18,8 +18,6 @@ class Game
     play(@board)
   end
 
-  protected
-
   def play(board)
     loop do
       play_turn(@current_player)

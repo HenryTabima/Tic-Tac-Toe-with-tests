@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/game.rb'
+require './lib/prompt.rb'
 
 describe Game do
   let(:game) { Game.new }
@@ -73,9 +74,17 @@ describe Game do
     end
   end
 
-  describe '#end_game' do
-    it 'exits the game when called' do
-      expect(game.end_game).to eql(true)
+  describe '#make_move' do
+    before { allow(@board).to receive(:move_cursor_up).and_return(true) }
+    it 'run move_cursor_up' do
+      expect(@board).to receive(:move_cursor_up).once
+      game.make_move(Prompt::KEY_UP, 'X')
     end
   end
+
+  # describe '#end_game' do
+  #   it 'exits the game when called' do
+  #     expect(game.end_game).to eql(false)
+  #   end
+  # end
 end

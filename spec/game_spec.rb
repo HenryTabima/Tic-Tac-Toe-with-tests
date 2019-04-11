@@ -29,14 +29,28 @@ describe Game do
       end
     end
 
-    context "with a diagonal of 'X false cases'" do
-      let(:state) { ['O', '-', '-', '-', 'X', '-', '-', '-', 'X'] }
-      it 'return false' do
-        expect(game.win?(player, state)).to_not eq(true)
+    describe 'with diferent values' do
+      context 'in a row' do
+        let(:state) { ['-', '-', '-', 'X', 'O', 'O', '-', '-', '-'] }
+        it 'return false' do
+          expect(game.win?(player, state)).to be false
+        end
       end
-      let(:state) { ['-', '-', 'X', '-', 'O', '-', 'X', '-', '-'] }
-      it 'return true' do
-        expect(game.win?(player, state)).to be false
+      context 'in a column' do
+        let(:state) { ['-', 'O', '-', '-', 'X', '-', '-', 'O', '-'] }
+        it 'return false' do
+          expect(game.win?(player, state)).to be false
+        end
+      end
+      context 'in a diagonal' do
+        let(:state) { ['O', '-', '-', '-', 'X', '-', '-', '-', 'X'] }
+        it 'return false' do
+          expect(game.win?(player, state)).to be false
+        end
+        let(:state) { ['-', '-', 'X', '-', 'O', '-', 'X', '-', '-'] }
+        it 'return false' do
+          expect(game.win?(player, state)).to be false
+        end
       end
     end
   end

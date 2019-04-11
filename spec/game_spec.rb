@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/game.rb'
+require './lib/board.rb'
 require './lib/prompt.rb'
 
 describe Game do
@@ -75,10 +76,10 @@ describe Game do
   end
 
   describe '#make_move' do
-    before { allow(@board).to receive(:move_cursor_up).and_return(true) }
     it 'run move_cursor_up' do
-      expect(@board).to receive(:move_cursor_up).once
-      game.make_move(Prompt::KEY_UP, 'X')
+      board = instance_double('Board')
+      expect(board).to receive(:move_cursor_up).once
+      game.make_move(Prompt::KEY_UP, 'X', board)
     end
   end
 

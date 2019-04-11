@@ -79,27 +79,27 @@ class Game
     until turn_finished
       print_board(message: @message, parsed_board: @board.parse_board, player_name: player.name)
       key = keypress "\nUse the arrows to move the cursor or press enter (return) to select\n"
-      turn_finished = make_move(key, player.board_piece)
+      turn_finished = make_move(key, player.board_piece, @board)
     end
   end
 
-  def make_move(key, player_piece)
+  def make_move(key, player_piece, board)
     case key
     when KEY_UP
-      @board.move_cursor_up
+      board.move_cursor_up
       false
     when KEY_DOWN
-      @board.move_cursor_down
+      board.move_cursor_down
       false
     when KEY_LEFT
-      @board.move_cursor_left
+      board.move_cursor_left
       false
     when KEY_RIGHT
-      @board.move_cursor_right
+      board.move_cursor_right
       false
     when KEY_RETURN
-      valid_move =  valid_move?([@current_player.board_piece, @next_player.board_piece], @board.cursor_value)
-      @board.mark_position(player_piece) if valid_move
+      valid_move = valid_move?([@current_player.board_piece, @next_player.board_piece], @board.cursor_value)
+      board.mark_position(player_piece) if valid_move
       valid_move
     end
   end
